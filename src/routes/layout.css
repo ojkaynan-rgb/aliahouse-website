@@ -1,3 +1,72 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:  #0B1121;
+  --navy2: #0F1828;
+  --navy3: #131E36;
+  --navy4: #1A2540;
+  --gold:  #C9A96E;
+  --gold2: #d9b97e;
+  --white: #FFFFFF;
+  --body:  #C8C0B4;
+  --muted: rgba(255,255,255,0.35);
+  --border: rgba(255,255,255,0.08);
+}
+
+html { scroll-behavior: smooth; }
+body { background-color: var(--navy); color: var(--white); font-family: 'Jost', sans-serif; font-weight: 300; }
+img { display: block; width: 100%; object-fit: cover; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background-color: var(--navy);
+  padding: 20px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.logo-name { font-weight: 200; font-size: 14px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--white); }
+.logo-sub  { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-link  { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--body); text-decoration: none; transition: color 0.2s; }
+.nav-link:hover { color: var(--white); }
+.btn-gold {
+  font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  background-color: var(--gold); color: var(--navy);
+  border: none; padding: 11px 26px; cursor: pointer; transition: background-color 0.2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-gold:hover { background-color: var(--gold2); }
+.btn-outline {
+  font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  background-color: transparent; color: var(--gold);
+  border: 1px solid var(--gold); padding: 11px 26px; cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-outline:hover { background-color: var(--gold); color: var(--navy); }
+
+/* SECTION SHARED */
+.section { padding: 100px 48px; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+.section-eyebrow { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.section-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 60px; }
+.section-h2 em { font-style: italic; color: #E8E0D2; }
+
+/* FOOTER */
+footer { background-color: #080E1C; padding: 36px 48px; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-cities { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-city { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+footer p { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+
+@media (max-width: 640px) {
+  nav { padding: 18px 20px; }
+  .nav-right .nav-link { display: none; }
+  .section { padding: 64px 24px; }
+  footer { padding: 28px 24px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
