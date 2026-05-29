@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { openModal } from '$lib/modalStore';
+	function openBooking() { openModal(); }
+
 	let galleryIndex = $state(0);
 
 	const slides = [
@@ -8,6 +11,7 @@
 		{ img: '/playroom.jpg', alt: 'Lobby', title: 'The Lobby', desc: 'Arrive with luggage, a laptop, a stroller, or all three. The lobby is made to be used, not crossed.' },
 		{ img: '/coworking.png', alt: 'Restaurant', title: 'The Restaurant', desc: 'Seasonal, local, genuinely good. The bar stays open after bedtime.' },
 	];
+
 
 	const experience = [
 		{ img: '/lobby.png', num: '01', title: 'A table worth booking.', desc: 'All-day dining. Seasonal menus, local sourcing. Kids eat properly. Adults eat well.' },
@@ -26,10 +30,6 @@
 
 	function galleryPrev() { galleryIndex = (galleryIndex - 1 + slides.length) % slides.length; }
 	function galleryNext() { galleryIndex = (galleryIndex + 1) % slides.length; }
-
-	let modalOpen = $state(false);
-	function openBooking() { modalOpen = true; }
-	function closeModal() { modalOpen = false; }
 </script>
 
 <svelte:head>
@@ -227,64 +227,6 @@
 	</div>
 </section>
 
-<!-- MODAL -->
-{#if modalOpen}
-<div class="overlay open" onclick={(e) => { if (e.target === e.currentTarget) closeModal(); }}>
-	<div class="modal">
-		<button class="modal-close" onclick={closeModal}>×</button>
-		<div class="modal-icon">◇</div>
-		<h2>Be first to know when Alia House opens.</h2>
-		<p>Alia House is in development. Join the first-access list for room previews, launch-city updates and first booking opportunities.</p>
-		<div class="modal-divider"></div>
-		<div class="modal-sub">Join the first-access list</div>
-		<div class="modal-form-grid">
-			<div class="modal-field">
-				<label>Name</label>
-				<input type="text" placeholder="Your name" />
-			</div>
-			<div class="modal-field">
-				<label>Email</label>
-				<input type="email" placeholder="your@email.com" />
-			</div>
-			<div class="modal-field">
-				<label>Preferred city</label>
-				<select>
-					<option>Amsterdam</option>
-					<option>Paris</option>
-					<option>London</option>
-					<option>Barcelona</option>
-					<option>Berlin</option>
-				</select>
-			</div>
-			<div class="modal-field">
-				<label>Travel period</label>
-				<input type="text" placeholder="e.g. July / school holiday" />
-			</div>
-			<div class="modal-field">
-				<label>Adults</label>
-				<select>
-					<option>1</option>
-					<option selected>2</option>
-					<option>3</option>
-					<option>4+</option>
-				</select>
-			</div>
-			<div class="modal-field">
-				<label>Children</label>
-				<select>
-					<option>0</option>
-					<option>1</option>
-					<option selected>2</option>
-					<option>3</option>
-					<option>4+</option>
-				</select>
-			</div>
-		</div>
-		<button class="btn-gold" style="width:100%" onclick={closeModal}>Join first-access list</button>
-	</div>
-</div>
-{/if}
-
 <style>
 	/* HERO */
 	.hero {
@@ -399,35 +341,6 @@
 	.tier-perks { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
 	.tier-perks li { font-size: 13px; color: var(--body); line-height: 1.5; padding-left: 16px; position: relative; }
 	.tier-perks li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 11px; }
-
-	/* MODAL */
-	.overlay {
-		display: none; position: fixed; inset: 0; z-index: 200;
-		background-color: rgba(11,17,33,0.93);
-		align-items: center; justify-content: center; padding: 24px;
-	}
-	.overlay.open { display: flex; }
-	.modal {
-		background-color: var(--navy2); border: 1px solid rgba(201,169,110,0.35);
-		padding: 48px; max-width: 520px; width: 100%; text-align: center; position: relative;
-		max-height: 90vh; overflow-y: auto;
-	}
-	.modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; }
-	.modal-close:hover { color: var(--white); }
-	.modal-icon { font-size: 28px; margin-bottom: 20px; color: var(--gold); }
-	.modal h2 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 16px; }
-	.modal p { font-size: 14px; line-height: 1.75; color: var(--body); margin-bottom: 28px; }
-	.modal-divider { width: 40px; height: 1px; background-color: var(--gold); margin: 0 auto 28px; }
-	.modal-sub { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-	.modal-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; text-align: left; }
-	.modal-field { display: flex; flex-direction: column; gap: 6px; }
-	.modal-field label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); }
-	.modal-field input, .modal-field select {
-		width: 100%; background-color: var(--navy4); border: 1px solid rgba(255,255,255,0.12);
-		color: var(--white); font-family: 'Jost', sans-serif; font-size: 13px;
-		padding: 10px 12px; outline: none;
-	}
-	.modal-field input:focus, .modal-field select:focus { border-color: var(--gold); }
 
 	@media (max-width: 900px) {
 		.locations-grid { grid-template-columns: repeat(2, 1fr); }

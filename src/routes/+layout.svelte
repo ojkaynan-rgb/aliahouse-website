@@ -1,14 +1,22 @@
 <script lang="ts">
 	import './layout.css';
 	import { page } from '$app/stores';
+	import { modalOpen, openModal, closeModal } from '$lib/modalStore';
 
 	let { children } = $props();
 
-	let modalOpen = $state(false);
-
-	function openModal() { modalOpen = true; }
-	function closeModal() { modalOpen = false; }
+	let selectedTier = $state('none');
 </script>
+
+<svelte:head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NG9LWTNK71"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-NG9LWTNK71');
+	</script>
+</svelte:head>
 
 <nav>
 	<a href="/" style="text-decoration:none">
@@ -44,7 +52,7 @@
 </footer>
 
 <!-- MODAL -->
-{#if modalOpen}
+{#if $modalOpen}
 <div class="overlay open" onclick={(e) => { if (e.target === e.currentTarget) closeModal(); }}>
 	<div class="modal">
 		<button class="modal-close" onclick={closeModal}>×</button>
@@ -96,7 +104,34 @@
 				</select>
 			</div>
 		</div>
-		<button class="btn-gold" style="width:100%" onclick={closeModal}>Join first-access list</button>
+
+		<div class="modal-divider"></div>
+		<div class="modal-sub">Membership interest</div>
+		<p class="modal-membership-intro">Are you interested in a membership — access to coworking, the restaurant and playroom across all five cities, whether you're staying or not?</p>
+		<div class="membership-tiers">
+			<label class="tier-option" class:selected={selectedTier === 'none'}>
+				<input type="radio" name="membership" value="none" bind:group={selectedTier} />
+				<div class="tier-opt-label">Not interested</div>
+				<div class="tier-opt-price">Stay only</div>
+			</label>
+			<label class="tier-option" class:selected={selectedTier === 'day'}>
+				<input type="radio" name="membership" value="day" bind:group={selectedTier} />
+				<div class="tier-opt-label">Day Pass</div>
+				<div class="tier-opt-price">From €25 / day</div>
+			</label>
+			<label class="tier-option" class:selected={selectedTier === 'city'}>
+				<input type="radio" name="membership" value="city" bind:group={selectedTier} />
+				<div class="tier-opt-label">City Member</div>
+				<div class="tier-opt-price">From €120 / mo</div>
+			</label>
+			<label class="tier-option" class:selected={selectedTier === 'network'}>
+				<input type="radio" name="membership" value="network" bind:group={selectedTier} />
+				<div class="tier-opt-label">Network</div>
+				<div class="tier-opt-price">From €280 / mo</div>
+			</label>
+		</div>
+
+		<button class="btn-gold" style="width:100%;margin-top:8px" onclick={closeModal}>Join first-access list</button>
 	</div>
 </div>
 {/if}
@@ -136,4 +171,42 @@
 	}
 	.modal-field select option { background-color: var(--navy4); }
 	.modal-field input:focus, .modal-field select:focus { border-color: var(--gold); }
+
+	/* MEMBERSHIP TIERS IN MODAL */
+	.modal-membership-intro {
+		font-size: 13px; line-height: 1.7; color: var(--body);
+		margin-bottom: 16px; text-align: left;
+	}
+	.membership-tiers {
+		display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+		margin-bottom: 24px; text-align: left;
+	}
+	.tier-option {
+		display: flex; flex-direction: column; gap: 4px;
+		padding: 14px 12px;
+		background-color: var(--navy4);
+		border: 1px solid rgba(255,255,255,0.1);
+		cursor: pointer; transition: border-color 0.2s, background-color 0.2s;
+		position: relative;
+	}
+	.tier-option input[type="radio"] {
+		position: absolute; opacity: 0; width: 0; height: 0;
+	}
+	.tier-option:hover {
+		border-color: rgba(201,169,110,0.4);
+	}
+	.tier-option.selected {
+		border-color: var(--gold);
+		background-color: rgba(201,169,110,0.08);
+	}
+	.tier-opt-label {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: 15px; font-weight: 300; color: var(--white);
+	}
+	.tier-option.selected .tier-opt-label { color: var(--gold); }
+	.tier-opt-price {
+		font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+		color: var(--muted);
+	}
+	.tier-option.selected .tier-opt-price { color: rgba(201,169,110,0.7); }
 </style>
