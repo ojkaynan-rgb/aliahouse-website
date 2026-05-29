@@ -1,6 +1,14 @@
 <script lang="ts">
 	import { openModal } from '$lib/modalStore';
-	function openBooking() { openModal(); }
+	function openBooking() {
+		if (typeof gtag !== 'undefined') {
+			gtag('event', 'check_availability_click', {
+				event_category: 'booking_intent',
+				event_label: 'hero_widget'
+			});
+		}
+		openModal();
+	}
 
 	let galleryIndex = $state(0);
 

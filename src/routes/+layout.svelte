@@ -1,11 +1,43 @@
 <script lang="ts">
 	import './layout.css';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { modalOpen, openModal, closeModal } from '$lib/modalStore';
 
 	let { children } = $props();
 
 	let selectedTier = $state('none');
+
+	async function submitWaitlist() {
+		const name = (document.getElementById('waitlistName') as HTMLInputElement)?.value ?? '';
+		const email = (document.getElementById('waitlistEmail') as HTMLInputElement)?.value ?? '';
+		const city = (document.getElementById('modalCity') as HTMLSelectElement)?.value ?? '';
+		const travelPeriod = (document.getElementById('travelPeriod') as HTMLInputElement)?.value ?? '';
+		const adults = (document.getElementById('modalAdults') as HTMLSelectElement)?.value ?? '';
+		const children = (document.getElementById('modalChildren') as HTMLSelectElement)?.value ?? '';
+
+		// Fire GA4 conversion event
+		if (typeof gtag !== 'undefined') {
+			gtag('event', 'waitlist_email_submitted', {
+				event_category: 'waitlist',
+				event_label: city || 'unknown_city'
+			});
+		}
+
+		// Submit to Airtable via API route
+		try {
+			await fetch('/api/waitlist', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier })
+			});
+		} catch (e) {
+			console.error('Waitlist submission failed:', e);
+		}
+
+		closeModal();
+		goto('/thank-you');
+	}
 </script>
 
 <svelte:head>
@@ -131,7 +163,7 @@
 			</label>
 		</div>
 
-		<button class="btn-gold" style="width:100%;margin-top:8px" onclick={closeModal}>Join first-access list</button>
+		<button class="btn-gold" style="width:100%;margin-top:8px" onclick={submitWaitlist}>Join first-access list</button>
 	</div>
 </div>
 {/if}
