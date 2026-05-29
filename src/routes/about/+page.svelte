@@ -1,6 +1,30 @@
 <svelte:head>
-	<title>About — Alia House · Family Lifestyle Hospitality</title>
-	<meta name="description" content="Alia House was founded on a simple belief: families make communities. We give them the room to be." />
+	<title>About Alia House — Family-Ready Hotel Concept | Why We Exist</title>
+	<meta name="description" content="Alia House was built around the hardest version of a city stay: travelling with children. A boutique hotel with coworking, kids playroom and restaurant across Amsterdam, Paris, London, Barcelona and Berlin." />
+	<link rel="canonical" href="https://aliahouse.com/about" />
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="About Alia House — Family-Ready Hotel Concept" />
+	<meta property="og:description" content="Built around the hardest version of a city stay: travelling with children. One room, five cities, a full day reimagined." />
+	<meta property="og:url" content="https://aliahouse.com/about" />
+	<meta property="og:type" content="website" />
+
+	<!-- Twitter -->
+	<meta name="twitter:title" content="About Alia House — Family-Ready Hotel Concept" />
+	<meta name="twitter:description" content="Built around the hardest version of a city stay: travelling with children. One room, five cities, a full day reimagined." />
+
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "AboutPage",
+		"name": "About Alia House",
+		"url": "https://aliahouse.com/about",
+		"description": "Alia House is a family lifestyle hotel concept founded on the belief that families make communities. Boutique city hotels in Amsterdam, Paris, London, Barcelona and Berlin.",
+		"publisher": {
+			"@type": "Organization",
+			"name": "Alia House",
+			"url": "https://aliahouse.com"
+		}
+	})}</script>`}
 </svelte:head>
 
 <!-- HERO -->

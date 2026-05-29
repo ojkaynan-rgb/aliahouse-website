@@ -33,8 +33,48 @@
 </script>
 
 <svelte:head>
-	<title>Alia House — Family-Ready City Hotel | Amsterdam, Paris, London</title>
-	<meta name="description" content="Alia House is a family lifestyle hotel across Amsterdam, Paris, London, Barcelona and Berlin. One room designed for 4. Coworking, restaurant, kids programming, membership." />
+	<title>Alia House — Family-Ready City Hotel | Amsterdam, Paris, London, Barcelona, Berlin</title>
+	<meta name="description" content="Alia House is a boutique family hotel in Amsterdam, Paris, London, Barcelona and Berlin. One room for up to 4 guests, with coworking, kids playroom, restaurant and membership — from €380/night." />
+	<link rel="canonical" href="https://aliahouse.com/" />
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="Alia House — Family-Ready City Hotel" />
+	<meta property="og:description" content="A boutique city hotel designed for families and couples. Coworking, kids playroom, restaurant and membership across Amsterdam, Paris, London, Barcelona and Berlin." />
+	<meta property="og:url" content="https://aliahouse.com/" />
+	<meta property="og:type" content="website" />
+
+	<!-- Twitter -->
+	<meta name="twitter:title" content="Alia House — Family-Ready City Hotel" />
+	<meta name="twitter:description" content="A boutique city hotel designed for families and couples. Coworking, kids playroom, restaurant and membership across five European cities." />
+
+	<!-- JSON-LD structured data -->
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "LodgingBusiness",
+		"name": "Alia House",
+		"description": "Alia House is a family lifestyle hotel concept across Amsterdam, Paris, London, Barcelona and Berlin. Rooms for up to 4 guests, coworking, kids playroom, restaurant and membership.",
+		"url": "https://aliahouse.com",
+		"logo": "https://aliahouse.com/favicon.png",
+		"image": "https://aliahouse.com/og-image.jpg",
+		"priceRange": "€€€",
+		"amenityFeature": [
+			{ "@type": "LocationFeatureSpecification", "name": "Coworking space", "value": true },
+			{ "@type": "LocationFeatureSpecification", "name": "Kids playroom", "value": true },
+			{ "@type": "LocationFeatureSpecification", "name": "Restaurant", "value": true },
+			{ "@type": "LocationFeatureSpecification", "name": "Family rooms", "value": true },
+			{ "@type": "LocationFeatureSpecification", "name": "High-speed WiFi", "value": true }
+		],
+		"location": [
+			{ "@type": "Place", "name": "Alia House Amsterdam", "address": { "@type": "PostalAddress", "addressLocality": "Amsterdam", "addressRegion": "Jordaan", "addressCountry": "NL" } },
+			{ "@type": "Place", "name": "Alia House Paris", "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressRegion": "Le Marais", "addressCountry": "FR" } },
+			{ "@type": "Place", "name": "Alia House London", "address": { "@type": "PostalAddress", "addressLocality": "London", "addressRegion": "Shoreditch", "addressCountry": "GB" } },
+			{ "@type": "Place", "name": "Alia House Barcelona", "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressRegion": "Eixample", "addressCountry": "ES" } },
+			{ "@type": "Place", "name": "Alia House Berlin", "address": { "@type": "PostalAddress", "addressLocality": "Berlin", "addressRegion": "Mitte", "addressCountry": "DE" } }
+		],
+		"sameAs": [
+			"https://www.instagram.com/aliahouse"
+		]
+	})}</script>`}
 </svelte:head>
 
 <!-- HERO -->
