@@ -281,7 +281,7 @@
 		min-height: 100vh; position: relative; overflow: hidden;
 		display: flex; flex-direction: column;
 		align-items: center; justify-content: flex-end;
-		text-align: center; padding: 140px 24px 48px;
+		text-align: center; padding: 140px 24px 0px;
 		background-color: var(--navy);
 	}
 	.hero video {
@@ -303,7 +303,7 @@
 
 	/* BOOKING WIDGET */
 	.booking-widget {
-		margin-top: 52px; width: 100%; max-width: 700px;
+		margin-top: 32px; width: 100%; max-width: 700px;
 		background-color: var(--navy3); border: 1px solid rgba(201,169,110,0.35); padding: 32px;
 	}
 	.widget-title { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
