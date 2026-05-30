@@ -401,9 +401,33 @@
 		.exp-grid { grid-template-columns: 1fr; }
 		.tiers { grid-template-columns: 1fr; }
 		.widget-fields { grid-template-columns: repeat(2, 1fr); }
+		.gallery-slide img { height: 420px; }
+		.exp-item img { height: 280px; width: 100%; object-fit: cover; }
 	}
 	@media (max-width: 640px) {
+		.hero { padding: 100px 16px 60px; }
+		.hero-body { font-size: 14px; }
+		.city-dots { gap: 14px; }
+
+		.widget-section { padding: 0 16px 60px; }
+		.booking-widget { padding: 24px 16px; }
+		.widget-fields { grid-template-columns: 1fr 1fr; gap: 8px; }
+		.field-group:first-child { grid-column: 1 / -1; }
+
 		.locations-grid { grid-template-columns: 1fr; }
-		.modal-form-grid { grid-template-columns: 1fr; }
+		.loc-card { padding: 32px 24px; }
+
+		.gallery-slide img { height: 260px; object-fit: cover; }
+		.gallery-caption { padding: 28px 20px 20px; }
+		.gallery-caption h3 { font-size: 20px; }
+		.gallery-caption p { font-size: 12px; }
+
+		.exp-item img { height: 220px; width: 100%; object-fit: cover; }
+		.exp-overlay { padding: 20px; }
+
+		.tiers { grid-template-columns: 1fr; }
+		.tier { padding: 32px 24px; }
+
+		.section-inner { padding-left: 16px; padding-right: 16px; }
 	}
 </style>

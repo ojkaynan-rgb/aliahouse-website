@@ -241,4 +241,11 @@
 		color: var(--muted);
 	}
 	.tier-option.selected .tier-opt-price { color: rgba(201,169,110,0.7); }
+
+	@media (max-width: 640px) {
+		.modal { padding: 32px 20px; max-height: 85vh; }
+		.modal h2 { font-size: 22px; }
+		.modal-form-grid { grid-template-columns: 1fr; }
+		.membership-tiers { grid-template-columns: repeat(2, 1fr); }
+	}
 </style>

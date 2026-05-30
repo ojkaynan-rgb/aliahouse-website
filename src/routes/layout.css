@@ -63,10 +63,16 @@ footer { background-color: #080E1C; padding: 36px 48px; border-top: 1px solid va
 .footer-city { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 footer p { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
+@media (max-width: 900px) {
+  .section { padding: 80px 32px; }
+}
+
 @media (max-width: 640px) {
   nav { padding: 18px 20px; }
   .nav-right .nav-link { display: none; }
-  .section { padding: 64px 24px; }
-  footer { padding: 28px 24px; }
+  .section { padding: 64px 16px; }
+  .section-h2 { margin-bottom: 36px; }
+  footer { padding: 28px 16px; }
   .footer-inner { flex-direction: column; text-align: center; }
+  .footer-cities { justify-content: center; }
 }
