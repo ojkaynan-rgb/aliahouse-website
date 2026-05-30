@@ -87,7 +87,7 @@
 
 <!-- HERO -->
 <section class="hero">
-	<video autoplay muted loop playsinline>
+	<video autoplay muted playsinline>
 		<source src="/hero-video.mp4" type="video/mp4" />
 	</video>
 	<div class="hero-overlay"></div>
