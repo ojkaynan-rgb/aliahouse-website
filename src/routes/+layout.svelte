@@ -172,7 +172,7 @@
 	.overlay {
 		display: none; position: fixed; inset: 0; z-index: 200;
 		background-color: rgba(11,17,33,0.93);
-		align-items: flex-start; justify-content: center; padding: 24px; padding-top: 18vh;
+		align-items: flex-start; justify-content: center; padding: 24px; padding-top: 32vh;
 	}
 	.overlay.open { display: flex; }
 	.modal {
