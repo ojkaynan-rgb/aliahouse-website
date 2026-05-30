@@ -102,48 +102,51 @@
 			{/each}
 		</div>
 
-		<!-- PRE-OPENING WIDGET -->
-		<div class="booking-widget" id="first-access">
-			<div class="widget-title">Pre-opening access</div>
-			<p class="widget-intro">Alia House is not taking bookings yet. Tell us where and when you would stay and join the first-access list for room previews, launch cities and early booking windows.</p>
-			<div class="widget-fields">
-				<div class="field-group">
-					<label>City</label>
-					<select>
-						<option>Amsterdam</option>
-						<option>Paris</option>
-						<option>London</option>
-						<option>Barcelona</option>
-						<option>Berlin</option>
-					</select>
-				</div>
-				<div class="field-group">
-					<label>Check-in</label>
-					<input type="date" />
-				</div>
-				<div class="field-group">
-					<label>Check-out</label>
-					<input type="date" />
-				</div>
-				<div class="field-group">
-					<label>Adults</label>
-					<select>
-						<option>1</option>
-						<option selected>2</option>
-					</select>
-				</div>
-				<div class="field-group">
-					<label>Children</label>
-					<select>
-						<option>0</option>
-						<option>1</option>
-						<option selected>2</option>
-						<option>3</option>
-					</select>
-				</div>
+	</div>
+</section>
+
+<!-- PRE-OPENING WIDGET -->
+<section class="widget-section" id="first-access">
+	<div class="booking-widget">
+		<div class="widget-title">Pre-opening access</div>
+		<p class="widget-intro">Alia House is not taking bookings yet. Tell us where and when you would stay and join the first-access list for room previews, launch cities and early booking windows.</p>
+		<div class="widget-fields">
+			<div class="field-group">
+				<label>City</label>
+				<select>
+					<option>Amsterdam</option>
+					<option>Paris</option>
+					<option>London</option>
+					<option>Barcelona</option>
+					<option>Berlin</option>
+				</select>
 			</div>
-			<button class="btn-check" onclick={openBooking}>Join first-access list</button>
+			<div class="field-group">
+				<label>Check-in</label>
+				<input type="date" />
+			</div>
+			<div class="field-group">
+				<label>Check-out</label>
+				<input type="date" />
+			</div>
+			<div class="field-group">
+				<label>Adults</label>
+				<select>
+					<option>1</option>
+					<option selected>2</option>
+				</select>
+			</div>
+			<div class="field-group">
+				<label>Children</label>
+				<select>
+					<option>0</option>
+					<option>1</option>
+					<option selected>2</option>
+					<option>3</option>
+				</select>
+			</div>
 		</div>
+		<button class="btn-check" onclick={openBooking}>Join first-access list</button>
 	</div>
 </section>
 
@@ -280,8 +283,8 @@
 	.hero {
 		min-height: 100vh; position: relative; overflow: hidden;
 		display: flex; flex-direction: column;
-		align-items: center; justify-content: flex-end;
-		text-align: center; padding: 80px 24px 60px;
+		align-items: center; justify-content: center;
+		text-align: center; padding: 140px 24px 80px;
 		background-color: var(--navy);
 	}
 	.hero video {
@@ -302,8 +305,11 @@
 	.city-dot span { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: var(--gold); margin-right: 8px; vertical-align: middle; }
 
 	/* BOOKING WIDGET */
+	.widget-section {
+		background-color: var(--navy); display: flex; justify-content: center; padding: 0 24px 80px;
+	}
 	.booking-widget {
-		margin-top: 24px; width: 100%; max-width: 700px;
+		width: 100%; max-width: 700px;
 		background-color: var(--navy3); border: 1px solid rgba(201,169,110,0.35); padding: 32px;
 	}
 	.widget-title { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
