@@ -280,8 +280,8 @@
 	.hero {
 		min-height: 100vh; position: relative; overflow: hidden;
 		display: flex; flex-direction: column;
-		align-items: center; justify-content: center;
-		text-align: center; padding: 140px 24px 80px;
+		align-items: center; justify-content: flex-end;
+		text-align: center; padding: 140px 24px 48px;
 		background-color: var(--navy);
 	}
 	.hero video {
