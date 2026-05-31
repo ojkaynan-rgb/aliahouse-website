@@ -7,6 +7,10 @@
 	let { children } = $props();
 
 	let selectedTier = $state('none');
+	let mobileMenuOpen = $state(false);
+
+	function toggleMobileMenu() { mobileMenuOpen = !mobileMenuOpen; }
+	function closeMobileMenu() { mobileMenuOpen = false; }
 
 	async function submitWaitlist() {
 		const name = (document.getElementById('waitlistName') as HTMLInputElement)?.value ?? '';
@@ -51,7 +55,7 @@
 </svelte:head>
 
 <nav>
-	<a href="/" style="text-decoration:none">
+	<a href="/" style="text-decoration:none" onclick={closeMobileMenu}>
 		<div class="logo-name">Alia House</div>
 		<div class="logo-sub">Family-ready hospitality</div>
 	</a>
@@ -62,7 +66,22 @@
 		<a href="/#membership" class="nav-link">Membership</a>
 		<button class="btn-gold" onclick={openModal}>First access</button>
 	</div>
+	<button class="hamburger" onclick={toggleMobileMenu} aria-label="Menu">
+		<span class:open={mobileMenuOpen}></span>
+		<span class:open={mobileMenuOpen}></span>
+		<span class:open={mobileMenuOpen}></span>
+	</button>
 </nav>
+
+{#if mobileMenuOpen}
+<div class="mobile-menu">
+	<a href="/#locations" class="mobile-link" onclick={closeMobileMenu}>Our houses</a>
+	<a href="/#rooms" class="mobile-link" onclick={closeMobileMenu}>Rooms</a>
+	<a href="/about" class="mobile-link" onclick={closeMobileMenu}>About</a>
+	<a href="/#membership" class="mobile-link" onclick={closeMobileMenu}>Membership</a>
+	<button class="btn-gold mobile-cta" onclick={() => { closeMobileMenu(); openModal(); }}>First access</button>
+</div>
+{/if}
 
 {@render children()}
 
