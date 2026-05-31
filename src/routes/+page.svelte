@@ -25,7 +25,7 @@
 
 	const experience = [
 		{ img: '/lobby.png', num: '01', title: 'A table worth booking.', desc: 'All-day dining. Seasonal menus, local sourcing. Kids eat properly. Adults eat well.' },
-		{ img: '/restaurant.png', num: '02', title: 'Work while they play.', desc: 'Coworking downstairs. Playroom next door. Close the laptop and walk out together.' },
+		{ img: '/restaurant -2.png', num: '02', title: 'Work while they play.', desc: 'Coworking downstairs. Playroom next door. Close the laptop and walk out together.' },
 		{ img: '/exp-restaurant.jpg', num: '03', title: 'The lobby as living room.', desc: 'A bar that opens at coffee and stays open late. A place that belongs to guests and members equally.' },
 		{ img: '/exp-coworking.png', num: '04', title: 'Programming for the kids.', desc: 'Workshops, movie nights, activity kits. Children are guests here, not an afterthought.' },
 	];
