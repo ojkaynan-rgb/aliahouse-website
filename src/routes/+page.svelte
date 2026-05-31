@@ -14,7 +14,7 @@
 
 	const slides = [
 		{ img: '/room-4.jpg', alt: 'Bunk bed and storage', title: 'Sleeping for four.', desc: 'Integrated bunk, pull-out lower bed, storage steps. Every centimetre considered.' },
-		{ img: '/room-5.jpg', alt: 'Double bed with city view', title: 'The double.', desc: 'For two — a generous city room. Warm light, good linen, a view worth waking up to.' },
+		{ img: '/room-5.png', alt: 'Double bed with Parisian view', title: 'The double.', desc: 'For two — a generous city room. Warm light, good linen, a view worth waking up to.' },
 		{ img: '/room-6.jpg', alt: 'Full room with wardrobe and Paris view', title: 'The full room.', desc: 'Wardrobe, workspace, kids nook, city view. One room that works across every kind of stay.' },
 		{ img: '/room-2.png', alt: 'Kids area', title: 'Playroom', desc: 'A calm space when children need to move and adults need a proper moment nearby.' },
 		{ img: '/room-3.png', alt: 'Coworking', title: 'Coworking', desc: 'Work properly when you need to. Close the laptop and return to the city.' },
