@@ -123,8 +123,8 @@
 
 <!-- PHOTO SPLIT -->
 <div class="split">
-	<img src="/about-restaurant.png" alt="Restaurant — Alia House" style="filter:brightness(0.85)" />
-	<img src="/about-hero.png" alt="Kids space — Alia House" style="filter:brightness(0.85)" />
+	<img src="/restaurant -2.png" alt="Restaurant — Alia House" style="filter:brightness(0.85)" />
+	<img src="/playroom-1.png" alt="Kids space — Alia House" style="filter:brightness(0.85)" />
 </div>
 
 <!-- PROMISE -->

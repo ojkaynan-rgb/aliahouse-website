@@ -1,9 +1,3 @@
-## Commit Policy
-
-After every code change, you MUST create a git commit. Stage only the relevant files (not secrets or binaries), write a concise commit message describing what changed and why, and commit immediately before moving on. Do not batch multiple unrelated changes into one commit.
-
----
-
 ## Project Configuration
 
 - **Language**: TypeScript

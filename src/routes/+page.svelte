@@ -16,18 +16,18 @@
 		{ img: '/room-4.jpg', alt: 'Bunk bed and storage', title: 'Sleeping for four.', desc: 'Integrated bunk, pull-out lower bed, storage steps. Every centimetre considered.' },
 		{ img: '/room-5.png', alt: 'Double bed with Parisian view', title: 'The double.', desc: 'For two — a generous city room. Warm light, good linen, a view worth waking up to.' },
 		{ img: '/room-6.jpg', alt: 'Full room with wardrobe and Paris view', title: 'The full room.', desc: 'Wardrobe, workspace, kids nook, city view. One room that works across every kind of stay.' },
-		{ img: '/nod.png', alt: 'Playroom', title: 'The Playroom.', desc: 'Children play. Parents breathe. Everyone belongs here.' },
-		{ img: '/room-3.png', alt: 'Coworking', title: 'Coworking', desc: 'Work properly when you need to. Close the laptop and return to the city.' },
-		{ img: '/playroom.jpg', alt: 'Lobby', title: 'The Lobby', desc: 'Arrive with luggage, a laptop, a stroller, or all three. The lobby is made to be used, not crossed.' },
-		{ img: '/coworking.png', alt: 'Restaurant', title: 'The Restaurant', desc: 'Seasonal, local, genuinely good. The bar stays open after bedtime.' },
+		{ img: '/playroom-1.png', alt: 'Playroom', title: 'The Playroom.', desc: 'Children play. Parents breathe. Everyone belongs here.' },
+		{ img: '/coworking- 1.png', alt: 'Coworking', title: 'Coworking', desc: 'Work properly when you need to. Close the laptop and return to the city.' },
+		{ img: '/lobby-1.jpg', alt: 'Lobby', title: 'The Lobby', desc: 'Arrive with luggage, a laptop, a stroller, or all three. The lobby is made to be used, not crossed.' },
+		{ img: '/restaurant -2.png', alt: 'Restaurant', title: 'The Restaurant', desc: 'Seasonal, local, genuinely good. The bar stays open after bedtime.' },
 	];
 
 
 	const experience = [
-		{ img: '/lobby.png', num: '01', title: 'A table worth booking.', desc: 'All-day dining. Seasonal menus, local sourcing. Kids eat properly. Adults eat well.' },
-		{ img: '/restaurant -2.png', num: '02', title: 'Work while they play.', desc: 'Coworking downstairs. Playroom next door. Close the laptop and walk out together.' },
-		{ img: '/exp-restaurant.jpg', num: '03', title: 'The lobby as living room.', desc: 'A bar that opens at coffee and stays open late. A place that belongs to guests and members equally.' },
-		{ img: '/exp-coworking.png', num: '04', title: 'Programming for the kids.', desc: 'Workshops, movie nights, activity kits. Children are guests here, not an afterthought.' },
+		{ img: '/restaurant -2.png', num: '01', title: 'A table worth booking.', desc: 'All-day dining. Seasonal menus, local sourcing. Kids eat properly. Adults eat well.' },
+		{ img: '/coworking- 1.png', num: '02', title: 'Work while they play.', desc: 'Coworking downstairs. Playroom next door. Close the laptop and walk out together.' },
+		{ img: '/lobby-1.jpg', num: '03', title: 'The lobby as living room.', desc: 'A bar that opens at coffee and stays open late. A place that belongs to guests and members equally.' },
+		{ img: '/playroom-1.png', num: '04', title: 'Programming for the kids.', desc: 'Workshops, movie nights, activity kits. Children are guests here, not an afterthought.' },
 	];
 
 	const locations = [
