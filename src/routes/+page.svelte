@@ -18,7 +18,7 @@
 		{ img: '/room-6.jpg', alt: 'Full room with wardrobe and Paris view', title: 'The full room.', desc: 'Wardrobe, workspace, kids nook, city view. One room that works across every kind of stay.' },
 		{ img: '/room-2.png', alt: 'Kids area', title: 'Playroom', desc: 'A calm space when children need to move and adults need a proper moment nearby.' },
 		{ img: '/room-3.png', alt: 'Coworking', title: 'Coworking', desc: 'Work properly when you need to. Close the laptop and return to the city.' },
-		{ img: '/playroom.jpg', alt: 'Lobby', title: 'The Lobby', desc: 'Arrive with luggage, a laptop, a stroller, or all three. The lobby is made to be used, not crossed.' },
+		{ img: '/nod.png', alt: 'Playroom', title: 'The Playroom.', desc: 'Children play. Parents breathe. Everyone belongs here.' },
 		{ img: '/coworking.png', alt: 'Restaurant', title: 'The Restaurant', desc: 'Seasonal, local, genuinely good. The bar stays open after bedtime.' },
 	];
 
