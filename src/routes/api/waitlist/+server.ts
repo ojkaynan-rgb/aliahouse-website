@@ -1,15 +1,16 @@
 import { json } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
 
 const AIRTABLE_TABLE_NAME = 'Waitlist';
 
-export const POST: RequestHandler = async ({ request, platform }) => {
+export const POST: RequestHandler = async ({ request }) => {
 	const body = await request.json();
 
 	const { name, email, city, travelPeriod, adults, children, membershipTier } = body;
 
-	const AIRTABLE_API_KEY = (platform?.env as Record<string, string>)?.AIRTABLE_API_KEY ?? process.env.AIRTABLE_API_KEY ?? '';
-	const AIRTABLE_BASE_ID = (platform?.env as Record<string, string>)?.AIRTABLE_BASE_ID ?? process.env.AIRTABLE_BASE_ID ?? '';
+	const AIRTABLE_API_KEY = env.AIRTABLE_API_KEY ?? '';
+	const AIRTABLE_BASE_ID = env.AIRTABLE_BASE_ID ?? '';
 
 	if (!email) {
 		return json({ error: 'Email is required' }, { status: 400 });
