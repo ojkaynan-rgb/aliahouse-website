@@ -226,7 +226,7 @@
 	<div class="section-inner">
 		<p class="section-eyebrow">The experience</p>
 		<h2 class="section-h2">More than a room.<br /><em>A full day, reimagined.</em></h2>
-		<p class="section-intro">After a day in the city, you need more than just a place to sleep. Maybe you have two hours before dinner and your kid has a swim lesson — so you take that call from the coworking lounge, squeeze in a massage, or simply exhale with a drink in hand. We are hybrid workers, travelling parents, and curious wanderers. Alia House is built around that reality: a full day of living, right where you're staying.</p>
+		<p class="section-intro">After a day in the city, you need more than just a place to sleep. Maybe you have two hours before dinner and your kid has a two-hour activity — so you take that call from the coworking lounge, squeeze in a massage, or simply exhale with a drink in hand. We are hybrid workers, travelling parents, and curious wanderers. Alia House is built around that reality: a full day of living, right where you're staying.</p>
 	</div>
 	<div class="exp-grid">
 		{#each experience as item}
