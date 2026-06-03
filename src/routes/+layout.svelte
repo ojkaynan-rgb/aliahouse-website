@@ -31,11 +31,17 @@
 		submitError = '';
 
 		try {
+			const controller = new AbortController();
+			const timeout = setTimeout(() => controller.abort(), 10000);
+
 			const res = await fetch('/api/waitlist', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier })
+				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier }),
+				signal: controller.signal
 			});
+
+			clearTimeout(timeout);
 
 			if (!res.ok) {
 				submitting = false;
