@@ -10,6 +10,8 @@
 	let mobileMenuOpen = $state(false);
 	let submitting = $state(false);
 	let submitError = $state('');
+	let turnstileToken = $state('');
+	const TURNSTILE_SITE_KEY = '1x00000000000000000000AA'; // placeholder — replace with your key
 
 	let modalName = $state('');
 	let modalEmail = $state('');
@@ -43,6 +45,7 @@
 
 		submitting = true;
 		submitError = '';
+		turnstileToken = (window as unknown as Record<string, string>).__turnstileToken ?? '';
 
 		try {
 			const controller = new AbortController();
@@ -51,7 +54,7 @@
 			const res = await fetch('/api/waitlist', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier }),
+				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier, turnstileToken }),
 				signal: controller.signal
 			});
 
@@ -90,6 +93,12 @@
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 		gtag('config', 'G-NG9LWTNK71');
+	</script>
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+	<script>
+		function onTurnstileSuccess(token) {
+			window.__turnstileToken = token;
+		}
 	</script>
 </svelte:head>
 
@@ -151,6 +160,12 @@
 		<p>Alia House is in development. Join the first-access list for room previews, launch-city updates and first booking opportunities.</p>
 		<div class="modal-divider"></div>
 		<div class="modal-sub">Join the first-access list</div>
+		<!-- Honeypot: hidden fields, only bots fill these -->
+		<div style="display:none" aria-hidden="true">
+			<input type="text" name="website" tabindex="-1" autocomplete="off" />
+			<input type="text" name="phone_number" tabindex="-1" autocomplete="off" />
+		</div>
+
 		<div class="modal-form-grid">
 			<div class="modal-field">
 				<label for="waitlistName">Name</label>
@@ -219,6 +234,13 @@
 				<div class="tier-opt-label">Network</div>
 				<div class="tier-opt-price">From €280 / mo</div>
 			</label>
+		</div>
+
+		<!-- Turnstile widget (invisible) — renders automatically -->
+		<div class="cf-turnstile"
+			data-sitekey={TURNSTILE_SITE_KEY}
+			data-callback="onTurnstileSuccess"
+			data-size="invisible">
 		</div>
 
 		{#if submitError}
