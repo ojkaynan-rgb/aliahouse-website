@@ -55,6 +55,7 @@ nav {
 .section-eyebrow { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
 .section-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 60px; }
 .section-h2 em { font-style: italic; color: #E8E0D2; }
+.section-intro { font-size: clamp(15px, 1.4vw, 17px); color: #C8BFB0; line-height: 1.75; max-width: 640px; margin-top: -32px; margin-bottom: 60px; font-weight: 300; }
 
 /* FOOTER */
 footer { background-color: #080E1C; padding: 36px 48px; border-top: 1px solid var(--border); }
