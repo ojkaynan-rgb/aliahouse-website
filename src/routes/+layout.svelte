@@ -8,6 +8,8 @@
 
 	let selectedTier = $state('none');
 	let mobileMenuOpen = $state(false);
+	let submitting = $state(false);
+	let submitError = $state('');
 
 	function toggleMobileMenu() { mobileMenuOpen = !mobileMenuOpen; }
 	function closeMobileMenu() { mobileMenuOpen = false; }
@@ -20,7 +22,34 @@
 		const adults = (document.getElementById('modalAdults') as HTMLSelectElement)?.value ?? '';
 		const children = (document.getElementById('modalChildren') as HTMLSelectElement)?.value ?? '';
 
-		// Fire GA4 conversion event
+		if (!email) {
+			submitError = 'Please enter your email address.';
+			return;
+		}
+
+		submitting = true;
+		submitError = '';
+
+		try {
+			const res = await fetch('/api/waitlist', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier })
+			});
+
+			if (!res.ok) {
+				submitting = false;
+				submitError = 'Something went wrong. Please try again.';
+				return;
+			}
+		} catch (e) {
+			console.error('Waitlist submission failed:', e);
+			submitting = false;
+			submitError = 'Something went wrong. Please try again.';
+			return;
+		}
+
+		// Fire GA4 conversion event only on success
 		if (typeof gtag !== 'undefined') {
 			gtag('event', 'waitlist_email_submitted', {
 				event_category: 'waitlist',
@@ -28,17 +57,7 @@
 			});
 		}
 
-		// Submit to Airtable via API route
-		try {
-			await fetch('/api/waitlist', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier: selectedTier })
-			});
-		} catch (e) {
-			console.error('Waitlist submission failed:', e);
-		}
-
+		submitting = false;
 		closeModal();
 		goto('/thank-you');
 	}
@@ -182,7 +201,12 @@
 			</label>
 		</div>
 
-		<button class="btn-gold" style="width:100%;margin-top:8px" onclick={submitWaitlist}>Join first-access list</button>
+		{#if submitError}
+			<p class="submit-error">{submitError}</p>
+		{/if}
+		<button class="btn-gold" style="width:100%;margin-top:8px" onclick={submitWaitlist} disabled={submitting}>
+			{submitting ? 'Submitting…' : 'Join first-access list'}
+		</button>
 	</div>
 </div>
 {/if}
@@ -260,6 +284,11 @@
 		color: var(--muted);
 	}
 	.tier-option.selected .tier-opt-price { color: rgba(201,169,110,0.7); }
+
+	.submit-error {
+		color: #e07070; font-size: 13px; margin-bottom: 8px; margin-top: 0;
+	}
+	.btn-gold:disabled { opacity: 0.6; cursor: not-allowed; }
 
 	@media (max-width: 640px) {
 		.modal { padding: 32px 20px; max-height: 85vh; }
