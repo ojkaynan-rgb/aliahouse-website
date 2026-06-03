@@ -16,39 +16,52 @@ export const POST: RequestHandler = async ({ request }) => {
 		return json({ error: 'Email is required' }, { status: 400 });
 	}
 
+	if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
+		console.error('Missing Airtable env vars');
+		return json({ error: 'Server misconfiguration: missing Airtable credentials' }, { status: 500 });
+	}
+
+	const fields: Record<string, string | number> = {
+		Email: email,
+		'Submitted At': new Date().toISOString()
+	};
+
+	if (name) fields['Name'] = name;
+	if (city) fields['City'] = city;
+	if (travelPeriod) fields['Travel Period'] = travelPeriod;
+	if (membershipTier) fields['Membership Interest'] = membershipTier;
+	if (adults) fields['Adults'] = Number(adults) || adults;
+	if (children) fields['Children'] = Number(children) || children;
+
 	try {
 		const response = await fetch(
-			`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`,
+			`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
 			{
 				method: 'POST',
 				headers: {
 					Authorization: `Bearer ${AIRTABLE_API_KEY}`,
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({
-					fields: {
-						Name: name || '',
-						Email: email,
-						City: city || '',
-						'Travel Period': travelPeriod || '',
-						Adults: adults || '',
-						Children: children || '',
-						'Membership Interest': membershipTier || 'none',
-						'Submitted At': new Date().toISOString()
-					}
-				})
+				body: JSON.stringify({ fields })
 			}
 		);
 
+		const rawText = await response.text();
+
 		if (!response.ok) {
-			const err = await response.json();
-			console.error('Airtable error:', err);
-			return json({ error: 'Airtable submission failed', detail: err }, { status: 500 });
+			let detail: unknown = rawText;
+			try {
+				detail = JSON.parse(rawText);
+			} catch {
+				// keep raw text
+			}
+			console.error('Airtable error:', response.status, detail);
+			return json({ error: 'Airtable submission failed', detail }, { status: 500 });
 		}
 
 		return json({ success: true });
 	} catch (err) {
-		console.error('Waitlist submission error:', err);
-		return json({ error: 'Server error' }, { status: 500 });
+		console.error('Waitlist fetch error:', err);
+		return json({ error: 'Network error reaching Airtable', detail: String(err) }, { status: 500 });
 	}
 };
