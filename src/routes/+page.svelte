@@ -182,7 +182,7 @@
 				<div class="loc-number">{loc.num}</div>
 				<div class="loc-city-name">{loc.city}</div>
 				<div class="loc-neighbourhood">{loc.neighbourhood}</div>
-				<div class="loc-open">Open</div>
+				<div class="loc-open">Opening soon</div>
 			</div>
 		{/each}
 	</div>
