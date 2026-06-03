@@ -23,7 +23,7 @@
 	let galleryIndex = $state(0);
 
 	const slides = [
-		{ img: '/room-4.jpg', alt: 'Bunk bed and storage', title: 'Sleeping for four.', desc: 'Integrated bunk, pull-out lower bed, storage steps. Every centimetre considered.' },
+		{ img: '/room-4.jpg', alt: 'Sleeping for four', title: 'Sleeping for four.', desc: 'Two integrated sleeping coves, each with its own light, USB, and privacy. Hidden storage throughout. Every centimetre has a purpose — and a place.' },
 		{ img: '/room-5.png', alt: 'Double bed with Parisian view', title: 'The double.', desc: 'For two — a generous city room. Warm light, good linen, a view worth waking up to.' },
 		{ img: '/room-6.jpg', alt: 'Full room with wardrobe and Paris view', title: 'The full room.', desc: 'Wardrobe, workspace, kids nook, city view. One room that works across every kind of stay.' },
 		{ img: '/playroom-1.png', alt: 'Playroom', title: 'The Playroom.', desc: 'Children play. Parents breathe. Everyone belongs here.' },
