@@ -193,7 +193,7 @@
 	<div class="section-inner">
 		<p class="section-eyebrow">The room</p>
 		<h2 class="section-h2" style="margin-bottom:20px">From €380/night<br /><em>for up to 4 guests.</em></h2>
-		<p class="rooms-intro">Equally comfortable for two. Designed to flex for four. Indicative launch pricing; final rates may vary by city, season and availability.</p>
+		<p class="rooms-intro">Equally comfortable for two. Designed to host four. Indicative launch pricing; final rates may vary by city, season and availability.</p>
 		<div class="gallery-wrap">
 			<div class="gallery-track" style="transform: translateX(-{galleryIndex * 100}%)">
 				{#each slides as slide}
