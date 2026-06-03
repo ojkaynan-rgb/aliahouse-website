@@ -129,8 +129,8 @@
 		<p class="widget-intro">Alia House is not taking bookings yet. Tell us where and when you would stay and join the first-access list for room previews, launch cities and early booking windows.</p>
 		<div class="widget-fields">
 			<div class="field-group">
-				<label>City</label>
-				<select bind:value={widgetCity}>
+				<label for="widgetCity">City</label>
+				<select id="widgetCity" bind:value={widgetCity}>
 					<option>Amsterdam</option>
 					<option>Paris</option>
 					<option>London</option>
@@ -139,16 +139,16 @@
 				</select>
 			</div>
 			<div class="field-group">
-				<label>Check-in</label>
-				<input type="date" bind:value={widgetCheckIn} />
+				<label for="widgetCheckIn">Check-in</label>
+				<input type="date" id="widgetCheckIn" bind:value={widgetCheckIn} />
 			</div>
 			<div class="field-group">
-				<label>Check-out</label>
-				<input type="date" bind:value={widgetCheckOut} min={widgetCheckIn} />
+				<label for="widgetCheckOut">Check-out</label>
+				<input type="date" id="widgetCheckOut" bind:value={widgetCheckOut} min={widgetCheckIn} />
 			</div>
 			<div class="field-group">
-				<label>Adults</label>
-				<select bind:value={widgetAdults}>
+				<label for="widgetAdults">Adults</label>
+				<select id="widgetAdults" bind:value={widgetAdults}>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -156,8 +156,8 @@
 				</select>
 			</div>
 			<div class="field-group">
-				<label>Children</label>
-				<select bind:value={widgetChildren}>
+				<label for="widgetChildren">Children</label>
+				<select id="widgetChildren" bind:value={widgetChildren}>
 					<option>0</option>
 					<option>1</option>
 					<option>2</option>
