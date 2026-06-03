@@ -62,10 +62,15 @@
 	<meta property="og:description" content="A boutique city hotel designed for families and couples. Coworking, kids playroom, restaurant and membership across Amsterdam, Paris, London, Barcelona and Berlin." />
 	<meta property="og:url" content="https://aliahouse.com/" />
 	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://aliahouse.com/og-image.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
 
 	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Alia House — Family-Ready City Hotel" />
 	<meta name="twitter:description" content="A boutique city hotel designed for families and couples. Coworking, kids playroom, restaurant and membership across five European cities." />
+	<meta name="twitter:image" content="https://aliahouse.com/og-image.jpg" />
 
 	<!-- JSON-LD structured data -->
 	{@html `<script type="application/ld+json">${JSON.stringify({
