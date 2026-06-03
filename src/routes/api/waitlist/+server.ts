@@ -30,8 +30,8 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (city) fields['City'] = city;
 	if (travelPeriod) fields['Travel Period'] = travelPeriod;
 	if (membershipTier) fields['Membership Interest'] = membershipTier;
-	if (adults) fields['Adults'] = Number(adults) || adults;
-	if (children) fields['Children'] = Number(children) || children;
+	if (adults) fields['Adults'] = String(adults);
+	if (children) fields['Children'] = String(children);
 
 	try {
 		const response = await fetch(
