@@ -329,14 +329,14 @@
 	}
 	.hero-overlay {
 		position: absolute; inset: 0; z-index: 1;
-		background: linear-gradient(to top, rgba(11,17,33,0.9) 0%, rgba(11,17,33,0.3) 55%, rgba(11,17,33,0.1) 100%);
+		background: linear-gradient(to top, rgba(11,17,33,0.95) 0%, rgba(11,17,33,0.65) 55%, rgba(11,17,33,0.35) 100%);
 	}
 	.hero-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
 	.eyebrow { font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; }
 	h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(44px, 6.5vw, 82px); line-height: 1.06; color: var(--white); max-width: 760px; }
 	h1 em { font-style: italic; color: #E8E0D2; }
 	.rule { width: 48px; height: 1px; background-color: var(--gold); margin: 36px auto; }
-	.hero-body { font-size: 16px; line-height: 1.85; color: var(--body); max-width: 500px; letter-spacing: 0.02em; }
+	.hero-body { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,0.88); max-width: 500px; letter-spacing: 0.02em; }
 	.city-dots { display: flex; gap: 28px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
 	.city-dot { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
 	.city-dot span { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: var(--gold); margin-right: 8px; vertical-align: middle; }
