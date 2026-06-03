@@ -43,7 +43,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		if (!response.ok) {
 			const err = await response.json();
 			console.error('Airtable error:', err);
-			return json({ error: 'Airtable submission failed' }, { status: 500 });
+			return json({ error: 'Airtable submission failed', detail: err }, { status: 500 });
 		}
 
 		return json({ success: true });
