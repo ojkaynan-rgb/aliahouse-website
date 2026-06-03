@@ -242,6 +242,22 @@
 	</div>
 </section>
 
+<!-- WHY -->
+<section class="section why" id="why">
+	<div class="why-inner">
+		<div class="why-left">
+			<p class="section-eyebrow">Why Alia House</p>
+			<h2 class="why-headline">Family-ready,<br /><em>not family-only.</em></h2>
+		</div>
+		<div class="why-right">
+			<p class="why-body">The way we travel changed before hotels did. We are hybrid workers, hybrid parents, hybrid travellers — moving between cities, calls and school calendars, trying to combine family life with everything else without shortchanging anyone.</p>
+			<p class="why-body">Some guests arrive as a couple. Some with a laptop and one free evening. Some with two children, a stroller, and the quiet hope that this time, the hotel has actually thought it through.</p>
+			<p class="why-body">Alia House is designed around that last guest — because they are the hardest to get right. Solve for them, and the hotel becomes better for everyone: calmer rooms, useful shared spaces, and a stay that makes the city feel easy rather than earned.</p>
+			<p class="why-closing">No compromise. Just a good stay.</p>
+		</div>
+	</div>
+</section>
+
 <!-- MEMBERSHIP -->
 <section class="section membership" id="membership">
 	<div class="section-inner">
@@ -401,6 +417,14 @@
 	.exp-title { font-size: 14px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
 	.exp-desc { font-size: 13px; line-height: 1.7; color: var(--body); max-width: 340px; }
 
+	/* WHY */
+	.why { background-color: var(--navy3); }
+	.why-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+	.why-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4.5vw, 58px); font-weight: 300; color: var(--white); line-height: 1.15; margin-top: 20px; }
+	.why-headline em { font-style: italic; color: #E8E0D2; }
+	.why-body { font-size: clamp(15px, 1.4vw, 17px); color: #C8BFB0; line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
+	.why-closing { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: var(--gold); margin-top: 8px; }
+
 	/* MEMBERSHIP */
 	.membership { background-color: var(--navy); }
 	.membership-intro { max-width: 580px; margin-bottom: 64px; }
@@ -445,6 +469,7 @@
 
 		.exp-item img { height: 220px; width: 100%; object-fit: cover; }
 		.exp-overlay { padding: 20px; }
+		.why-inner { grid-template-columns: 1fr; gap: 32px; }
 
 		.tiers { grid-template-columns: 1fr; }
 		.tier { padding: 32px 24px; }
