@@ -1,8 +1,17 @@
 import { writable } from 'svelte/store';
 
-export const modalOpen = writable(false);
+export interface ModalPrefill {
+	city?: string;
+	travelPeriod?: string;
+	adults?: string;
+	children?: string;
+}
 
-export function openModal() {
+export const modalOpen = writable(false);
+export const modalPrefill = writable<ModalPrefill>({});
+
+export function openModal(data?: ModalPrefill) {
+	if (data) modalPrefill.set(data);
 	modalOpen.set(true);
 	if (typeof gtag !== 'undefined') {
 		gtag('event', 'modal_shown', {

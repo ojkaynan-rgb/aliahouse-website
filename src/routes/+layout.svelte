@@ -2,7 +2,7 @@
 	import './layout.css';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { modalOpen, openModal, closeModal } from '$lib/modalStore';
+	import { modalOpen, modalPrefill, openModal, closeModal } from '$lib/modalStore';
 
 	let { children } = $props();
 
@@ -11,16 +11,30 @@
 	let submitting = $state(false);
 	let submitError = $state('');
 
+	let modalName = $state('');
+	let modalEmail = $state('');
+	let modalCity = $state('Amsterdam');
+	let modalTravelPeriod = $state('');
+	let modalAdults = $state('2');
+	let modalChildren = $state('2');
+
+	modalPrefill.subscribe((p) => {
+		if (p.city) modalCity = p.city;
+		if (p.travelPeriod !== undefined) modalTravelPeriod = p.travelPeriod;
+		if (p.adults) modalAdults = p.adults;
+		if (p.children) modalChildren = p.children;
+	});
+
 	function toggleMobileMenu() { mobileMenuOpen = !mobileMenuOpen; }
 	function closeMobileMenu() { mobileMenuOpen = false; }
 
 	async function submitWaitlist() {
-		const name = (document.getElementById('waitlistName') as HTMLInputElement)?.value ?? '';
-		const email = (document.getElementById('waitlistEmail') as HTMLInputElement)?.value ?? '';
-		const city = (document.getElementById('modalCity') as HTMLSelectElement)?.value ?? '';
-		const travelPeriod = (document.getElementById('travelPeriod') as HTMLInputElement)?.value ?? '';
-		const adults = (document.getElementById('modalAdults') as HTMLSelectElement)?.value ?? '';
-		const children = (document.getElementById('modalChildren') as HTMLSelectElement)?.value ?? '';
+		const name = modalName;
+		const email = modalEmail;
+		const city = modalCity;
+		const travelPeriod = modalTravelPeriod;
+		const adults = modalAdults;
+		const children = modalChildren;
 
 		if (!email) {
 			submitError = 'Please enter your email address.';
@@ -140,15 +154,15 @@
 		<div class="modal-form-grid">
 			<div class="modal-field">
 				<label for="waitlistName">Name</label>
-				<input type="text" id="waitlistName" placeholder="Your name" />
+				<input type="text" id="waitlistName" placeholder="Your name" bind:value={modalName} />
 			</div>
 			<div class="modal-field">
 				<label for="waitlistEmail">Email</label>
-				<input type="email" id="waitlistEmail" placeholder="your@email.com" />
+				<input type="email" id="waitlistEmail" placeholder="your@email.com" bind:value={modalEmail} />
 			</div>
 			<div class="modal-field">
-				<label for="modalCity">Preferred city</label>
-				<select id="modalCity">
+				<label for="modalCitySelect">Preferred city</label>
+				<select id="modalCitySelect" bind:value={modalCity}>
 					<option>Amsterdam</option>
 					<option>Paris</option>
 					<option>London</option>
@@ -158,23 +172,23 @@
 			</div>
 			<div class="modal-field">
 				<label for="travelPeriod">Travel period</label>
-				<input type="text" id="travelPeriod" placeholder="e.g. July / school holiday" />
+				<input type="text" id="travelPeriod" placeholder="e.g. July / school holiday" bind:value={modalTravelPeriod} />
 			</div>
 			<div class="modal-field">
-				<label for="modalAdults">Adults</label>
-				<select id="modalAdults">
+				<label for="modalAdultsSelect">Adults</label>
+				<select id="modalAdultsSelect" bind:value={modalAdults}>
 					<option>1</option>
-					<option selected>2</option>
+					<option>2</option>
 					<option>3</option>
 					<option>4+</option>
 				</select>
 			</div>
 			<div class="modal-field">
-				<label for="modalChildren">Children</label>
-				<select id="modalChildren">
+				<label for="modalChildrenSelect">Children</label>
+				<select id="modalChildrenSelect" bind:value={modalChildren}>
 					<option>0</option>
 					<option>1</option>
-					<option selected>2</option>
+					<option>2</option>
 					<option>3</option>
 					<option>4+</option>
 				</select>

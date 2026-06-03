@@ -1,5 +1,12 @@
 <script lang="ts">
 	import { openModal } from '$lib/modalStore';
+
+	let widgetCity = $state('Amsterdam');
+	let widgetCheckIn = $state('');
+	let widgetCheckOut = $state('');
+	let widgetAdults = $state('2');
+	let widgetChildren = $state('2');
+
 	function openBooking() {
 		if (typeof gtag !== 'undefined') {
 			gtag('event', 'check_availability_click', {
@@ -7,7 +14,10 @@
 				event_label: 'hero_widget'
 			});
 		}
-		openModal();
+		const travelPeriod = widgetCheckIn && widgetCheckOut
+			? `${widgetCheckIn} → ${widgetCheckOut}`
+			: widgetCheckIn || '';
+		openModal({ city: widgetCity, travelPeriod, adults: widgetAdults, children: widgetChildren });
 	}
 
 	let galleryIndex = $state(0);
@@ -115,7 +125,7 @@
 		<div class="widget-fields">
 			<div class="field-group">
 				<label>City</label>
-				<select>
+				<select bind:value={widgetCity}>
 					<option>Amsterdam</option>
 					<option>Paris</option>
 					<option>London</option>
@@ -125,26 +135,29 @@
 			</div>
 			<div class="field-group">
 				<label>Check-in</label>
-				<input type="date" />
+				<input type="date" bind:value={widgetCheckIn} />
 			</div>
 			<div class="field-group">
 				<label>Check-out</label>
-				<input type="date" />
+				<input type="date" bind:value={widgetCheckOut} min={widgetCheckIn} />
 			</div>
 			<div class="field-group">
 				<label>Adults</label>
-				<select>
+				<select bind:value={widgetAdults}>
 					<option>1</option>
-					<option selected>2</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4+</option>
 				</select>
 			</div>
 			<div class="field-group">
 				<label>Children</label>
-				<select>
+				<select bind:value={widgetChildren}>
 					<option>0</option>
 					<option>1</option>
-					<option selected>2</option>
+					<option>2</option>
 					<option>3</option>
+					<option>4+</option>
 				</select>
 			</div>
 		</div>
