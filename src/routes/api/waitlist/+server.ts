@@ -2,8 +2,6 @@ import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
 
-const AIRTABLE_TABLE_NAME = 'Waitlist';
-
 // --- Rate limiting: max 5 submissions per IP per 10 minutes ---
 const ipMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 5;
@@ -42,13 +40,12 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		return json({ error: 'Email is required' }, { status: 400 });
 	}
 
-	const AIRTABLE_API_KEY = env.AIRTABLE_API_KEY ?? '';
-	const AIRTABLE_BASE_ID = env.AIRTABLE_BASE_ID ?? '';
+	const SHEET_SCRIPT_URL = env.GOOGLE_SHEET_SCRIPT_URL ?? '';
 	const TURNSTILE_SECRET = env.TURNSTILE_SECRET_KEY ?? '';
 
-	if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
-		console.error('Missing Airtable env vars');
-		return json({ error: 'Server misconfiguration: missing Airtable credentials' }, { status: 500 });
+	if (!SHEET_SCRIPT_URL) {
+		console.error('Missing GOOGLE_SHEET_SCRIPT_URL env var');
+		return json({ error: 'Server misconfiguration: missing Google Sheet script URL' }, { status: 500 });
 	}
 
 	// --- 3. Turnstile verification (only if secret key is configured) ---
@@ -67,43 +64,23 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		}
 	}
 
-	const fields: Record<string, string | number> = {
-		Email: email,
-		'Submitted At': new Date().toISOString()
-	};
-
-	if (name) fields['Name'] = name;
-	if (city) fields['City'] = city;
-	if (travelPeriod) fields['Travel Period'] = travelPeriod;
-	if (membershipTier) fields['Membership Interest'] = membershipTier;
-	if (adults) fields['Adults'] = String(adults);
-	if (children) fields['Children'] = String(children);
-
 	try {
-		const response = await fetch(
-			`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`,
-			{
-				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ fields })
-			}
-		);
+		const response = await fetch(SHEET_SCRIPT_URL, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ name, email, city, travelPeriod, adults, children, membershipTier })
+		});
 
 		const rawText = await response.text();
 
 		if (!response.ok) {
-			let detail: unknown = rawText;
-			try { detail = JSON.parse(rawText); } catch { /* keep raw text */ }
-			console.error('Airtable error:', response.status, detail);
-			return json({ error: 'Airtable submission failed', detail }, { status: 500 });
+			console.error('Google Sheet error:', response.status, rawText);
+			return json({ error: 'Sheet submission failed' }, { status: 500 });
 		}
 
 		return json({ success: true });
 	} catch (err) {
 		console.error('Waitlist fetch error:', err);
-		return json({ error: 'Network error reaching Airtable', detail: String(err) }, { status: 500 });
+		return json({ error: 'Network error reaching Google Sheet', detail: String(err) }, { status: 500 });
 	}
 };
